@@ -3,7 +3,7 @@
 This Website is done in React.JS.
 
 ## To input your program:
-You can either drag and drop your RV16 assembly program in the specified area or directly write it in the text area.
+You can either drag and drop (or upload by clicking on the area) your RV16 assembly program in the specified area or directly write it in the text area.
 
 ## Available Scripts
 
