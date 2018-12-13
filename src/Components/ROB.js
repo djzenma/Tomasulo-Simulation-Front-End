@@ -40,11 +40,11 @@ function ROB(props) {
             <Table className={classes.table}>
                 <TableHead>
                     <TableRow>
-                        <TableCell>Instruction</TableCell>
-                        <TableCell numeric>Operands</TableCell>
-                        <TableCell numeric>Issue</TableCell>
-                        <TableCell numeric>Execute</TableCell>
-                        <TableCell numeric>WriteBack</TableCell>
+                        <TableCell>Type</TableCell>
+                        <TableCell numeric>Index</TableCell>
+                        <TableCell numeric>Ready</TableCell>
+                        <TableCell numeric>Destination</TableCell>
+                        <TableCell numeric>Values</TableCell>
                         <TableCell numeric>Commit</TableCell>
                     </TableRow>
                 </TableHead>

@@ -47,6 +47,7 @@ function ReservationStations(props) {
                         <TableCell numeric>Vk</TableCell>
                         <TableCell numeric>Qj</TableCell>
                         <TableCell numeric>Qk</TableCell>
+                        <TableCell numeric>A</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

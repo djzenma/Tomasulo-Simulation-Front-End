@@ -40,8 +40,7 @@ function RegisterTable(props) {
             <Table className={classes.table}>
                 <TableHead>
                     <TableRow>
-                        <TableCell>F0</TableCell>
-                        <TableCell numeric>F1</TableCell>
+                        <TableCell>F1</TableCell>
                         <TableCell numeric>F2</TableCell>
                         <TableCell numeric>F3</TableCell>
                         <TableCell numeric>F4</TableCell>
