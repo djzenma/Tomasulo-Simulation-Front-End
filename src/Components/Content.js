@@ -14,6 +14,7 @@ import ROB from "./ROB";
 import ReservationStations from "./ReservationStations";
 import RegisterTable from "./RegisterTable";
 import DropzoneAreaComponent from "./DropZone";
+import Highlight from "react-highlight";
 
 const styles = theme => ({
     root: {
@@ -103,7 +104,7 @@ function Content(props) {
                                         <CardHeader title="Code">
                                         </CardHeader>
                                         <CardContent>
-                                            <p dangerouslySetInnerHTML={{__html: code}}></p>
+                                            <Highlight className="mips">{code}</Highlight>
                                         </CardContent>
                                     </Card>
                                 </Grid>

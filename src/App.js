@@ -35,7 +35,7 @@ class App extends Component {
     }
 
     syntaxHighlight = (code) => {
-        if (code.includes('lw'))
+        /*if (code.includes('lw'))
             code = code.replace(/lw/g, '<span class="text-danger">lw</span>');
         else if (code.includes('sw'))
             code = code.replace(/sw/g, '<span class="text-danger ">sw</span>');
@@ -56,7 +56,7 @@ class App extends Component {
         else if (code.includes('nand'))
             code = code.replace(/nand/g, '<span class="text-danger">nand</span>');
         else if (code.includes('mul'))
-            code = code.replace(/mul/g, '<span class="text-danger">mul</span>');
+            code = code.replace(/mul/g, '<span class="text-danger">mul</span>');*/
         this.setState({code: code});
     };
 
