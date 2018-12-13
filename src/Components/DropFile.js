@@ -37,7 +37,7 @@ class DropFile extends Component {
             presentation = 'Your Program is : \n';
 
         return (
-            <div style={{marginLeft: 20 + 'px', marginTop: 20 + 'px'}}>
+            <div>
                 <Dropzone
                     accept="text/*"
                     onDrop={(accepted, rejected) => { this.readFile(accepted) }} >
