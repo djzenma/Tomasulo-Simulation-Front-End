@@ -67,6 +67,16 @@ function Content(props) {
                         </CardHeader>
                         <CardContent>
                             <Grid container spacing={16}>
+
+                                <Grid item xs={12}>
+                                    <Card>
+                                        <CardHeader title="Code">
+                                        </CardHeader>
+                                        <CardContent>
+                                            <Highlight className="mips">{code !== "" ? code : 'No input provided. Please use one of the methods to provide input. :)'}</Highlight>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
                                 <Grid item xs={6}>
                                     <Card>
                                         <CardHeader title="Manual Input"
@@ -96,15 +106,6 @@ function Content(props) {
                                         </CardHeader>
                                         <CardContent>
                                             <DropzoneAreaComponent syntaxHighlight={syntaxHighlight}/>
-                                        </CardContent>
-                                    </Card>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <Card>
-                                        <CardHeader title="Code">
-                                        </CardHeader>
-                                        <CardContent>
-                                            <Highlight className="mips">{code}</Highlight>
                                         </CardContent>
                                     </Card>
                                 </Grid>
