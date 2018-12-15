@@ -6,6 +6,7 @@
     "@material-ui/core": "^3.6.2",
     "@material-ui/icons": "^3.0.1",
     "app": "^0.1.0",
+    "axios": "^0.18.0",
     "contentful": "^7.0.5",
     "create": "0.0.2",
     "create-react-app": "^2.1.1",

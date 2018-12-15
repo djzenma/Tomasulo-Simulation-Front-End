@@ -35,28 +35,6 @@ class App extends Component {
     }
 
     syntaxHighlight = (code) => {
-        /*if (code.includes('lw'))
-            code = code.replace(/lw/g, '<span class="text-danger">lw</span>');
-        else if (code.includes('sw'))
-            code = code.replace(/sw/g, '<span class="text-danger ">sw</span>');
-        else if (code.includes('jmp'))
-            code = code.replace(/jmp/g, '<span class="text-danger">jmp</span>');
-        else if (code.includes('beq'))
-            code = code.replace(/beq/g, '<span class="text-danger">beq</span>');
-        else if (code.includes('jalr'))
-            code = code.replace(/jalr/g, '<span class="text-danger">jalr</span>');
-        else if (code.includes('ret'))
-            code = code.replace(/ret/g, '<span class="text-danger">ret</span>');
-        else if (code.includes('add'))
-            code = code.replace(/add/g, '<span class="text-danger">add</span>');
-        else if (code.includes('sub'))
-            code = code.replace(/sub/g, '<span class="text-danger">sub</span>');
-        else if (code.includes('addi'))
-            code = code.replace(/addi/g, '<span class="text-danger">addi</span>');
-        else if (code.includes('nand'))
-            code = code.replace(/nand/g, '<span class="text-danger">nand</span>');
-        else if (code.includes('mul'))
-            code = code.replace(/mul/g, '<span class="text-danger">mul</span>');*/
         this.setState({code: code});
     };
 
