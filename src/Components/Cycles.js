@@ -5,6 +5,13 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Grid from "@material-ui/core/Grid";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/es/CardHeader";
+import CardContent from "@material-ui/core/CardContent";
+import ROB from "./ROB";
+import ReservationStations from "./ReservationStations";
+import RegisterTable from "./RegisterTable";
 
 const styles = theme => ({
     root: {
@@ -65,24 +72,6 @@ class Cycles extends React.Component {
         }));
     };
 
-    handleSkip = () => {
-        const {activeStep} = this.state;
-        if (!this.isStepOptional(activeStep)) {
-            // You probably want to guard against something like this,
-            // it should never occur unless someone's actively trying to break something.
-            throw new Error("You can't skip a step that isn't optional.");
-        }
-
-        this.setState(state => {
-            const skipped = new Set(state.skipped.values());
-            skipped.add(activeStep);
-            return {
-                activeStep: state.activeStep + 1,
-                skipped,
-            };
-        });
-    };
-
     handleReset = () => {
         this.setState({
             activeStep: 0,
@@ -94,72 +83,94 @@ class Cycles extends React.Component {
     }
 
     render() {
-        const {classes} = this.props;
-        const steps = getSteps();
+        const {classes, response} = this.props;
+        const steps = response === null ? getSteps() : response;
         const {activeStep} = this.state;
 
         return (
-            <div className={classes.root}>
-                <Stepper activeStep={activeStep}>
-                    {steps.map((label, index) => {
-                        const props = {};
-                        const labelProps = {};
-                        if (this.isStepOptional(index)) {
-                        }
-                        if (this.isStepSkipped(index)) {
-                            props.completed = false;
-                        }
-                        return (
-                            <Step key={label} {...props}>
-                                <StepLabel {...labelProps}>{label}</StepLabel>
-                            </Step>
-                        );
-                    })}
-                </Stepper>
-                <div>
-                    {activeStep === steps.length ? (
-                        <div>
-                            <Typography className={classes.instructions}>
-                                All steps completed - you&apos;re finished
-                            </Typography>
-                            <Button onClick={this.handleReset} className={classes.button}>
-                                Reset
-                            </Button>
-                        </div>
-                    ) : (
-                        <div>
-                            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+            <Grid container spacing={16}>
+                <Grid item xs={12}>
+                    <div className={classes.root}>
+                        <Stepper activeStep={activeStep}>
+                            {steps.map((label, index) => {
+                                const props = {};
+                                const labelProps = {};
+                                if (this.isStepOptional(index)) {
+                                }
+                                if (this.isStepSkipped(index)) {
+                                    props.completed = false;
+                                }
+                                return (
+                                    <Step key={index} {...props}>
+                                        <StepLabel {...labelProps}>{index}</StepLabel>
+                                    </Step>
+                                );
+                            })}
+                        </Stepper>
+                    </div>
+                </Grid>
+                <Grid item xs={12}>
+                    <Card>
+                        <CardHeader title="Registers">
+                        </CardHeader>
+                        <CardContent>
+                            <RegisterTable data={response === null || activeStep >= steps.length ? [] : response[activeStep].rf}/>
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid item xs={12}>
+                    <Card>
+                        <CardHeader title="ROB">
+                        </CardHeader>
+                        <CardContent>
+                            <ROB data={response === null  || activeStep >= steps.length ? [] : response[activeStep].robResponse}/>
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid item xs={12}>
+                    <Card>
+                        <CardHeader title="Reservation Stations">
+                        </CardHeader>
+                        <CardContent>
+                            <ReservationStations data={response === null || activeStep >= steps.length  ? [] : response[activeStep].rsResponses}/>
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid item xs={12}>
+                    <div>
+                        {activeStep === steps.length ? (
                             <div>
-                                <Button
-                                    disabled={activeStep === 0}
-                                    onClick={this.handleBack}
-                                    className={classes.button}
-                                >
-                                    Back
+                                <Typography className={classes.instructions}>
+                                    All steps completed - you&apos;re finished
+                                </Typography>
+                                <Button onClick={this.handleReset} className={classes.button}>
+                                    Reset
                                 </Button>
-                                {this.isStepOptional(activeStep) && (
+                            </div>
+                        ) : (
+                            <div>
+                                <div>
+                                    <Button
+                                        disabled={activeStep === 0}
+                                        onClick={this.handleBack}
+                                        className={classes.button}
+                                    >
+                                        Back
+                                    </Button>
                                     <Button
                                         variant="contained"
                                         color="primary"
-                                        onClick={this.handleSkip}
+                                        onClick={this.handleNext}
                                         className={classes.button}
                                     >
-                                        Ignore
+                                        {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                                     </Button>
-                                )}
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    onClick={this.handleNext}
-                                    className={classes.button}
-                                >
-                                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                                </Button>
+                                </div>
                             </div>
-                        </div>
-                    )}
-                </div>
-            </div>
+                        )}
+                    </div>
+                </Grid>
+            </Grid>
         );
     }
 }

@@ -17,7 +17,7 @@ const styles = {
     },
 };
 
-const team = ['Mazen Amr', 'Mohamed Ads', 'Khaled Soliman', 'Bassant Sammy', 'Amr ElSElimy'];
+const team = ['Mazen Amr', 'Mohamed Ads', 'Khaled Soliman', 'Bassant Sammy'];
 const NavBar = (props) => {
     const {classes} = props;
     return (

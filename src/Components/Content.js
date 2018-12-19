@@ -45,61 +45,9 @@ const styles = theme => ({
     },
 });
 
-const handleStartSimulation = (code) => {
-    console.log(code);
-    const instrsMatch = code.match(/Program:\n((?:.+\n+)+)Starting Address: /i);
-    const startMatch = code.match(/Starting Address: (\d+)\n/i);
-    const dataItemsMatch = code.match(/Data Items:\n((Address: \d+, value: \d+\n)+)/i);
-    if (instrsMatch && startMatch && dataItemsMatch) {
-        const instructionArray = instrsMatch[1].slice(0, -1).split('\n');
-        const startingAddress = startMatch[1];
-        const dataItems = dataItemsMatch[1].slice(0, -1).split('\n');
-
-        console.log("instrs", instructionArray);
-        console.log("start", startingAddress);
-        console.log("data", dataItems);
-
-        let formattedInstructions = [];
-        instructionArray.forEach((instruction) => {
-            const match = instruction.split(' ');
-            const operands = match[1].split(',');
-            console.log(match[0]);
-            console.log(operands);
-            formattedInstructions.push({
-                name: match[0],
-                operands: operands
-            })
-        });
-
-        let formattedDataItems = [];
-        dataItems.forEach((dataItem) => {
-            const match = dataItem.match(/Address: (\d+), value: (\d+)/i);
-            console.log('address', match[1]);
-            console.log('value', match[2]);
-            formattedDataItems.push({
-                address: parseInt(match[1]),
-                values: parseInt(match[2]),
-            })
-        });
-
-
-        const request = {
-            instructions: formattedInstructions,
-            startingAddress: parseInt(startingAddress),
-            dataItems: formattedDataItems
-        };
-
-        console.log(request);
-        axios.post(`http://localhost:9000/`, request)
-            .then(res => {
-                console.log(res);
-                console.log(res.data);
-            })
-    }
-};
 
 function Content(props) {
-    const {classes, syntaxHighlight, code} = props;
+    const {classes, syntaxHighlight, code, handleStartSimulation, response} = props;
 
     return (
         <Paper className={classes.paper}>
@@ -177,38 +125,7 @@ function Content(props) {
                         <CardHeader title="Simulation Output" subheader="These tables show the output">
                         </CardHeader>
                         <CardContent>
-                            <Grid container spacing={16}>
-                                <Grid item xs={12}>
-                                    <Cycles/>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <Card>
-                                        <CardHeader title="ROB">
-                                        </CardHeader>
-                                        <CardContent>
-                                            <ROB/>
-                                        </CardContent>
-                                    </Card>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <Card>
-                                        <CardHeader title="Reservation Stations">
-                                        </CardHeader>
-                                        <CardContent>
-                                            <ReservationStations/>
-                                        </CardContent>
-                                    </Card>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <Card>
-                                        <CardHeader title="Register Status">
-                                        </CardHeader>
-                                        <CardContent>
-                                            <RegisterTable/>
-                                        </CardContent>
-                                    </Card>
-                                </Grid>
-                            </Grid>
+                            <Cycles response={response}/>
                         </CardContent>
                         <CardActions>
                         </CardActions>

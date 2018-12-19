@@ -1,11 +1,21 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+
+const CustomTableCell = withStyles(theme => ({
+    head: {
+        backgroundColor: theme.palette.common.black,
+        color: theme.palette.common.white,
+    },
+    body: {
+        fontSize: 14,
+    },
+}))(TableCell);
 
 const styles = theme => ({
     root: {
@@ -16,44 +26,39 @@ const styles = theme => ({
     table: {
         minWidth: 700,
     },
+    row: {
+        '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.background.default,
+        },
+    },
 });
 
-let id = 0;
-function createData(name, calories, fat, carbs, protein) {
-    id += 1;
-    return { id, name, calories, fat, carbs, protein };
-}
-
-const rows = [
-];
-
 function ROB(props) {
-    const { classes } = props;
-
+    const {classes} = props;
+    const rows = props.data;
     return (
         <Paper className={classes.root}>
             <Table className={classes.table}>
                 <TableHead>
                     <TableRow>
-                        <TableCell>Type</TableCell>
-                        <TableCell numeric>Index</TableCell>
-                        <TableCell numeric>Ready</TableCell>
-                        <TableCell numeric>Destination</TableCell>
-                        <TableCell numeric>Values</TableCell>
-                        <TableCell numeric>Commit</TableCell>
+                        <CustomTableCell>Type</CustomTableCell>
+                        <CustomTableCell numeric>Index</CustomTableCell>
+                        <CustomTableCell numeric>Ready</CustomTableCell>
+                        <CustomTableCell numeric>Destination</CustomTableCell>
+                        <CustomTableCell numeric>Values</CustomTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map(row => {
+                    {rows.map((row, i) => {
                         return (
-                            <TableRow key={row.id}>
-                                <TableCell component="th" scope="row">
-                                    {row.name}
-                                </TableCell>
-                                <TableCell numeric>{row.calories}</TableCell>
-                                <TableCell numeric>{row.fat}</TableCell>
-                                <TableCell numeric>{row.carbs}</TableCell>
-                                <TableCell numeric>{row.protein}</TableCell>
+                            <TableRow key={i}>
+                                <CustomTableCell component="th" scope="row">
+                                    {row.type}
+                                </CustomTableCell>
+                                <CustomTableCell numeric>{row.index}</CustomTableCell>
+                                <CustomTableCell numeric>{row.ready}</CustomTableCell>
+                                <CustomTableCell numeric>{row.dest}</CustomTableCell>
+                                <CustomTableCell numeric>{row.value}</CustomTableCell>
                             </TableRow>
                         );
                     })}
@@ -62,4 +67,5 @@ function ROB(props) {
         </Paper>
     );
 }
+
 export default withStyles(styles)(ROB);

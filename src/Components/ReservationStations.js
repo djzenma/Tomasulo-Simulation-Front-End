@@ -1,11 +1,21 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+
+const CustomTableCell = withStyles(theme => ({
+    head: {
+        backgroundColor: theme.palette.common.black,
+        color: theme.palette.common.white,
+    },
+    body: {
+        fontSize: 14,
+    },
+}))(TableCell);
 
 const styles = theme => ({
     root: {
@@ -16,46 +26,54 @@ const styles = theme => ({
     table: {
         minWidth: 700,
     },
+    row: {
+        '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.background.default,
+        },
+    },
 });
 
 let id = 0;
+
 function createData(name, calories, fat, carbs, protein) {
     id += 1;
-    return { id, name, calories, fat, carbs, protein };
+    return {id, name, calories, fat, carbs, protein};
 }
 
-const rows = [
-];
 
 function ReservationStations(props) {
-    const { classes } = props;
-
+    const {classes} = props;
+    const rows = props.data;
     return (
         <Paper className={classes.root}>
             <Table className={classes.table}>
                 <TableHead>
                     <TableRow>
-                        <TableCell>Name</TableCell>
-                        <TableCell numeric>Busy</TableCell>
-                        <TableCell numeric>Op</TableCell>
-                        <TableCell numeric>Vj</TableCell>
-                        <TableCell numeric>Vk</TableCell>
-                        <TableCell numeric>Qj</TableCell>
-                        <TableCell numeric>Qk</TableCell>
-                        <TableCell numeric>A</TableCell>
+                        <CustomTableCell>Name</CustomTableCell>
+                        <CustomTableCell numeric>Busy</CustomTableCell>
+                        <CustomTableCell numeric>Op</CustomTableCell>
+                        <CustomTableCell numeric>Vj</CustomTableCell>
+                        <CustomTableCell numeric>Vk</CustomTableCell>
+                        <CustomTableCell numeric>Qj</CustomTableCell>
+                        <CustomTableCell numeric>Qk</CustomTableCell>
+                        <CustomTableCell numeric>A</CustomTableCell>
+                        <CustomTableCell numeric>COE</CustomTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map(row => {
+                    {rows.map((row,i) => {
                         return (
-                            <TableRow key={row.id}>
-                                <TableCell component="th" scope="row">
-                                    {row.name}
-                                </TableCell>
-                                <TableCell numeric>{row.calories}</TableCell>
-                                <TableCell numeric>{row.fat}</TableCell>
-                                <TableCell numeric>{row.carbs}</TableCell>
-                                <TableCell numeric>{row.protein}</TableCell>
+                            <TableRow key={i}>
+                                <CustomTableCell component="th" scope="row">
+                                    {row[1]}
+                                </CustomTableCell>
+                                <CustomTableCell numeric>{row[0]}</CustomTableCell>
+                                <CustomTableCell numeric>{row[3]}</CustomTableCell>
+                                <CustomTableCell numeric>{row[2]}</CustomTableCell>
+                                <CustomTableCell numeric>{row[5]}</CustomTableCell>
+                                <CustomTableCell numeric>{row[4]}</CustomTableCell>
+                                <CustomTableCell numeric>{row[6]}</CustomTableCell>
+                                <CustomTableCell numeric>{row[7]}</CustomTableCell>
                             </TableRow>
                         );
                     })}
@@ -64,4 +82,5 @@ function ReservationStations(props) {
         </Paper>
     );
 }
+
 export default withStyles(styles)(ReservationStations);
