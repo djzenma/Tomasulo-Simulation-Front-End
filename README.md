@@ -1,8 +1,9 @@
-# Tomasolo's Algorithm Simulation
+# Tomasolo's Algorithm Simulation Front-End
 
 Still in Development...
 
-This Website is done in React.JS.
+This is the website of our other repository containing the actual Tomasolo Algorithm: https://github.com/djzenma/Tomasolo
+This Website is done in React.JS and Java Spring.
 
 ## To input your program:
 You can either drag and drop (or upload by clicking on the area) your RV16 assembly program in the specified area or directly write it in the text area.
