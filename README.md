@@ -1,8 +1,8 @@
-# Tomasolo's Algorithm Simulation Front-End
+# Tomasulo's Algorithm Simulation Front-End
 
 Still in Development...
 
-This is the website of our other repository containing the actual Tomasolo Algorithm: https://github.com/djzenma/Tomasolo
+This is the website of our other repository containing the actual Tomasulo Algorithm: https://github.com/djzenma/Tomasolo
 This Website is done in React.JS and Java Spring.
 
 ## To input your program:
