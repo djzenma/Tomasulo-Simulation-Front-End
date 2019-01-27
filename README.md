@@ -1,4 +1,4 @@
-# Engineers: Mazen, Bassant, Khaled, Mobz
+# Engineers: Mazen, Khaled
 
 # Tomasulo's Algorithm Simulation Front-End
 
